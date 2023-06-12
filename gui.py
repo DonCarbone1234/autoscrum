@@ -11,22 +11,24 @@ app = customtkinter.CTk()
 app.geometry("1440x1080")
 
 
-def button_pressed():
-    print("rrmdspkfsd")
-
-
 def ui():
     try:
-        test.findNameAndNumber(text1list)
+        tickets = entry_1.get()
+        ticketip = tickets.split(" ")
+        ticketlist = sorted(ticketip)
+        test.findNameAndNumber(ticketlist)
     except selenium.common.exceptions.InvalidArgumentException:
-        print("Didn't work, try re-inputtng the link and make sure your jira login is correct")
+        print("Didn't work, try re-inputting the link and make sure your jira login is correct")
 
 
-text1 = tkinter.StringVar()
-text1ip = text1.get()
-text1list = text1ip.split(" ")
+def button_pressed():
+    tickets = entry_1.get()
+    ticketip = tickets.split(" ")
+    ticketlist = sorted(ticketip)
+    print(ticketlist)
 
-entry_1 = customtkinter.CTkEntry(master=app, placeholder_text="URL", textvariable=text1)
+
+entry_1 = customtkinter.CTkEntry(master=app, placeholder_text="URL")
 entry_1.pack(pady=10, padx=10)
 
 button1 = customtkinter.CTkButton(master=app, text="test", command=ui)
